@@ -1,4 +1,3 @@
-import React from 'react';
 import { GameResult } from '../types';
 
 interface ResultScreenProps {

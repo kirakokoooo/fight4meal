@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 interface SetupScreenProps {
   onStart: (nameA: string, nameB: string) => void;

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Weapon, WEAPONS } from '../types';
 
 interface IntroScreenProps {

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState, useCallback, MouseEvent, PointerEvent } from 'react';
 import { Balloon, Weapon, GameResult, BalloonType } from '../types';
 
 interface GameScreenProps {
@@ -275,7 +275,7 @@ export default function GameScreen({ weapon, onEnd }: GameScreenProps) {
   };
 
   // Handle Logic for Popping a Balloon
-  const processPop = (balloon: Balloon, x: number, y: number, isSecondary: boolean = false) => {
+  const processPop = (balloon: Balloon, x: number, y: number) => {
       // Prevent double popping
       if (balloon.popped) return;
       
@@ -286,18 +286,18 @@ export default function GameScreen({ weapon, onEnd }: GameScreenProps) {
           playSound('angel');
           setScore(s => s * 2);
           statsRef.current.grossEarnings *= 2; // Approximate tracking logic
-          showFeedback(balloon.id, 'Double! 👼', x, y, 'angel');
+          showFeedback('Double! 👼', x, y, 'angel');
       } else if (balloon.type === 'devil') {
           playSound('devil');
           setDevilModeEndTime(Date.now() + 5000); // 5 seconds
-          showFeedback(balloon.id, '😈', x, y, 'penalty');
+          showFeedback('😈', x, y, 'penalty');
       } else if (balloon.isBlack) {
           // Penalty
           playSound('freeze');
           statsRef.current.blackBalloonsHit += 1;
           statsRef.current.penaltyAmount += 20;
           setScore(s => s - 20);
-          showFeedback(balloon.id, '-20 & 🧊', x, y, 'penalty');
+          showFeedback('-20 & 🧊', x, y, 'penalty');
           // Trigger Freeze
           setIsFrozen(true);
           setTimeout(() => setIsFrozen(false), 3000);
@@ -316,7 +316,7 @@ export default function GameScreen({ weapon, onEnd }: GameScreenProps) {
 
           statsRef.current.grossEarnings += val;
           setScore(s => s + val);
-          showFeedback(balloon.id, `+${val}`, x, y, 'hit');
+          showFeedback(`+${val}`, x, y, 'hit');
       }
 
       // Mark Popped
@@ -326,7 +326,7 @@ export default function GameScreen({ weapon, onEnd }: GameScreenProps) {
       }, 200);
   };
 
-  const handleShoot = (balloon: Balloon, e: React.MouseEvent | React.PointerEvent) => {
+  const handleShoot = (balloon: Balloon, e: MouseEvent | PointerEvent) => {
     e.stopPropagation(); // Stop propagation so background click doesn't trigger "miss"
     
     if (balloon.popped || isFrozen || !hasStarted) return;
@@ -362,21 +362,21 @@ export default function GameScreen({ weapon, onEnd }: GameScreenProps) {
                     const rect = containerRef.current?.getBoundingClientRect();
                     const nx = rect ? rect.left + (nearest.x/100)*rect.width : 0;
                     const ny = rect ? rect.top + (nearest.y/100)*rect.height : 0;
-                    processPop(nearest as Balloon, nx, ny, true);
+                    processPop(nearest as Balloon, nx, ny);
                 }
              }, 100);
         }
     }
   };
 
-  const handleBackgroundClick = (e: React.MouseEvent | React.PointerEvent) => {
+  const handleBackgroundClick = (e: MouseEvent | PointerEvent) => {
      if (!hasStarted || isFrozen) return;
      // If this fires, it means we clicked background (missed balloons)
      playSound('miss');
-     showFeedback(Date.now(), 'Miss', e.clientX, e.clientY, 'miss');
+     showFeedback('Miss', e.clientX, e.clientY, 'miss');
   };
 
-  const showFeedback = (id: number, text: string, x: number, y: number, type: 'hit' | 'miss' | 'penalty' | 'angel') => {
+  const showFeedback = (text: string, x: number, y: number, type: 'hit' | 'miss' | 'penalty' | 'angel') => {
     const feedbackItem = { id: Date.now() + Math.random(), text, x, y, type };
     setFeedback(prev => [...prev, feedbackItem]);
     setTimeout(() => {
