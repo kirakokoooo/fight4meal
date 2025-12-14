@@ -353,7 +353,7 @@ export default function FinalScreen({ retryCount, onRetryRound, onFullReset, nam
                 <div className="mt-8 pt-6 border-t-2 border-dashed border-pink-100 flex flex-col items-center">
                     <div className="bg-white p-2 rounded-xl shadow-sm border border-pink-100 mb-2">
                         <img 
-                            src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://fight4meal.vercel.app/" 
+                            src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://fight4meal.netlify.app/" 
                             alt="Scan to win" 
                             className="w-24 h-24 object-contain opacity-90"
                             crossOrigin="anonymous"

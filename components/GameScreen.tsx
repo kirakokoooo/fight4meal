@@ -172,19 +172,22 @@ export default function GameScreen({ weapon, onEnd }: GameScreenProps) {
     let isBlack = false;
     let value = 0;
     let color = '';
-    let speed = random(1.0, 2.5);
+    // Further reduced speed by another 20% (Original: 0.8-2.0 -> New: ~0.6-1.6)
+    let speed = random(0.64, 1.6);
 
     // Angel (Max 3, rare, fast)
     if (rand < 0.05 && statsRef.current.angelsSpawned < 3) {
         type = 'angel';
         statsRef.current.angelsSpawned++;
-        speed = random(3.0, 4.5); // Very fast
+        // Further reduced speed by another 20% (Original: 2.4-3.6 -> New: ~1.9-2.9)
+        speed = random(1.92, 2.88); 
     } 
     // Devil (Max 10, uncommon)
     else if (rand < 0.15 && statsRef.current.devilsSpawned < 10) {
         type = 'devil';
         statsRef.current.devilsSpawned++;
-        speed = random(0.5, 1.0); // Very Slow (0.5% - 1.0% per frame)
+        // Further reduced speed by another 20% (Original: 0.4-0.8 -> New: ~0.3-0.6)
+        speed = random(0.32, 0.64); 
     } 
     // Normal Balloons
     else {
@@ -440,7 +443,8 @@ export default function GameScreen({ weapon, onEnd }: GameScreenProps) {
                     style={{
                         left: `${Math.random() * 100}%`,
                         top: `-${Math.random() * 20}%`,
-                        animationDuration: `${2 + Math.random() * 3}s`,
+                        // Slowed down by 20% again (Original base ~2s -> Prev ~2.5s -> New ~3.1s)
+                        animationDuration: `${3.1 + Math.random() * 4.7}s`,
                         opacity: 0.8
                     }}
                  >
