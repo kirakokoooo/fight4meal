@@ -358,7 +358,7 @@ export default function FinalScreen({ retryCount, onRetryRound, onFullReset, nam
                             Added crossOrigin="anonymous" to allow html2canvas to capture it.
                         */}
                         <img 
-                            src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://fight4meal.netlify.app/" 
+                            src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://fight4meal.vercel.app/" 
                             alt="Scan to win" 
                             className="w-24 h-24 object-contain opacity-90"
                             crossOrigin="anonymous"
