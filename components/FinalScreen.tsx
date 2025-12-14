@@ -305,10 +305,10 @@ export default function FinalScreen({ retryCount, onRetryRound, onFullReset, nam
            {/* Wrapper to allow scrolling if needed on small screens */}
            <div className="w-full max-w-sm flex flex-col items-center pb-8">
              
-             {/* The Card DOM to Capture */}
+             {/* The Card DOM to Capture - Hidden after generation */}
              <div 
                 ref={cardRef}
-                className="bg-white p-8 rounded-[2rem] shadow-2xl w-full border-8 border-pink-200 relative overflow-hidden"
+                className={`bg-white p-8 rounded-[2rem] shadow-2xl w-full border-8 border-pink-200 relative overflow-hidden ${generatedImage ? 'hidden' : 'block'}`}
              >
                 <div className="absolute top-[-20px] left-[-20px] text-8xl opacity-10">🎀</div>
                 <div className="absolute bottom-[-20px] right-[-20px] text-8xl opacity-10">🍱</div>
@@ -352,11 +352,6 @@ export default function FinalScreen({ retryCount, onRetryRound, onFullReset, nam
                 {/* QR Code Section */}
                 <div className="mt-8 pt-6 border-t-2 border-dashed border-pink-100 flex flex-col items-center">
                     <div className="bg-white p-2 rounded-xl shadow-sm border border-pink-100 mb-2">
-                        {/* 
-                            IMPORTANT: Replace the src below with your actual QR code image URL or base64 string.
-                            Using a placeholder generic QR code generator for demonstration.
-                            Added crossOrigin="anonymous" to allow html2canvas to capture it.
-                        */}
                         <img 
                             src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://fight4meal.vercel.app/" 
                             alt="Scan to win" 

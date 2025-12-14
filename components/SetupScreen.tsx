@@ -30,23 +30,23 @@ export default function SetupScreen({ onStart }: SetupScreenProps) {
   };
 
   return (
-    <div className="w-full h-full bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 flex flex-col items-center justify-center p-6 text-center select-none relative overflow-hidden">
+    <div className="w-full h-full bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100 flex flex-col items-center justify-center p-6 text-center select-none relative overflow-y-auto">
       
       {/* Floating Background Emojis - Increased Density */}
-      <div className="absolute top-10 left-10 text-4xl animate-bounce delay-100 opacity-50">🍬</div>
-      <div className="absolute bottom-20 right-10 text-4xl animate-bounce delay-700 opacity-50">🍩</div>
-      <div className="absolute top-1/2 left-5 text-3xl animate-pulse delay-300 opacity-50">🍭</div>
-      <div className="absolute top-20 right-20 text-5xl animate-pulse delay-500 opacity-40">🎀</div>
+      <div className="absolute top-10 left-10 text-4xl animate-bounce delay-100 opacity-50 pointer-events-none">🍬</div>
+      <div className="absolute bottom-20 right-10 text-4xl animate-bounce delay-700 opacity-50 pointer-events-none">🍩</div>
+      <div className="absolute top-1/2 left-5 text-3xl animate-pulse delay-300 opacity-50 pointer-events-none">🍭</div>
+      <div className="absolute top-20 right-20 text-5xl animate-pulse delay-500 opacity-40 pointer-events-none">🎀</div>
       
       {/* New Food Emojis */}
-      <div className="absolute top-1/4 left-1/4 text-5xl animate-bounce delay-[1.5s] opacity-30">🍕</div>
-      <div className="absolute bottom-1/3 left-10 text-4xl animate-pulse delay-200 opacity-40">🍔</div>
-      <div className="absolute top-10 left-1/2 text-3xl animate-bounce delay-1000 opacity-30">🍟</div>
-      <div className="absolute bottom-10 left-1/3 text-5xl animate-pulse delay-[2s] opacity-30">🍣</div>
-      <div className="absolute top-1/3 right-10 text-4xl animate-bounce delay-[0.5s] opacity-40">🍱</div>
-      <div className="absolute bottom-1/2 right-1/4 text-3xl animate-pulse delay-300 opacity-30">🍜</div>
-      <div className="absolute top-32 left-1/2 transform -translate-x-1/2 text-6xl animate-pulse delay-[1.2s] opacity-20">🍙</div>
-      <div className="absolute bottom-32 right-32 text-4xl animate-bounce delay-[0.8s] opacity-40">🍦</div>
+      <div className="absolute top-1/4 left-1/4 text-5xl animate-bounce delay-[1.5s] opacity-30 pointer-events-none">🍕</div>
+      <div className="absolute bottom-1/3 left-10 text-4xl animate-pulse delay-200 opacity-40 pointer-events-none">🍔</div>
+      <div className="absolute top-10 left-1/2 text-3xl animate-bounce delay-1000 opacity-30 pointer-events-none">🍟</div>
+      <div className="absolute bottom-10 left-1/3 text-5xl animate-pulse delay-[2s] opacity-30 pointer-events-none">🍣</div>
+      <div className="absolute top-1/3 right-10 text-4xl animate-bounce delay-[0.5s] opacity-40 pointer-events-none">🍱</div>
+      <div className="absolute bottom-1/2 right-1/4 text-3xl animate-pulse delay-300 opacity-30 pointer-events-none">🍜</div>
+      <div className="absolute top-32 left-1/2 transform -translate-x-1/2 text-6xl animate-pulse delay-[1.2s] opacity-20 pointer-events-none">🍙</div>
+      <div className="absolute bottom-32 right-32 text-4xl animate-bounce delay-[0.8s] opacity-40 pointer-events-none">🍦</div>
 
       {/* Author & Contact Info */}
       <div className="absolute top-4 right-4 flex flex-col items-end gap-2 z-30">
@@ -102,7 +102,7 @@ export default function SetupScreen({ onStart }: SetupScreenProps) {
         </div>
       )}
       
-      <div className="max-w-md w-full bg-white/60 backdrop-blur-xl border-4 border-white rounded-[2rem] p-8 shadow-[0_10px_40px_rgba(236,72,153,0.15)] animate-in fade-in zoom-in duration-500 z-20">
+      <div className="max-w-md w-full bg-white/60 backdrop-blur-xl border-4 border-white rounded-[2rem] p-8 shadow-[0_10px_40px_rgba(236,72,153,0.15)] animate-in fade-in zoom-in duration-500 z-20 my-auto">
         <h1 className="text-4xl font-black text-pink-500 mb-6 tracking-wider drop-shadow-sm">
           🍚 吃饭大作战 🍚
         </h1>
@@ -159,10 +159,6 @@ export default function SetupScreen({ onStart }: SetupScreenProps) {
         >
           🎮 准备试试枪法！
         </button>
-      </div>
-
-      <div className="mt-8 text-slate-400 text-sm font-medium bg-white/30 px-4 py-2 rounded-full backdrop-blur-sm">
-        ☁️ 当然你也可以只是自己玩玩 ☁️
       </div>
     </div>
   );
